@@ -23,9 +23,20 @@ export function SignIn() {
   });
 
   async function onSubmit(data: SignInForm) {
-    console.log(data);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    toast.success("Enviamos um link de autenticação para seu email!");
+    try {
+      console.log(data);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      toast.success("Enviamos um link de autenticação para seu email!", {
+        action: {
+          label: "Reenviar",
+          onClick: () => {
+            onSubmit(data);
+          },
+        },
+      });
+    } catch (error) {
+      toast.error("Ocorreu um erro ao tentar acessar sua conta!");
+    }
   }
 
   return (
