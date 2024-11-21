@@ -3,6 +3,7 @@ import { Separator } from "./ui/separator.tsx";
 
 import NavLink from "./nav-link.tsx";
 import { ThemeToggle } from "./theme/theme-toggle.tsx";
+import AccountMenu from "./account-menu.tsx";
 
 const Header = () => {
   return (
@@ -22,6 +23,7 @@ const Header = () => {
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <ThemeToggle />
+          <AccountMenu />
         </div>
       </div>
     </div>
