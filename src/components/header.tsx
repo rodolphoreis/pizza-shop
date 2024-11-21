@@ -2,6 +2,7 @@ import { Home, Pizza, UtensilsCrossed } from "lucide-react";
 import { Separator } from "./ui/separator.tsx";
 
 import NavLink from "./nav-link.tsx";
+import { ThemeToggle } from "./theme/theme-toggle.tsx";
 
 const Header = () => {
   return (
@@ -19,6 +20,9 @@ const Header = () => {
             <span className="hidden sm:block">Pedidos</span>
           </NavLink>
         </nav>
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   );
