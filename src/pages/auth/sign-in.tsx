@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 import * as z from "zod";
@@ -17,7 +19,9 @@ export function SignIn() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    reset,
+
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<SignInForm>({
     resolver: zodResolver(schema),
   });
@@ -38,11 +42,19 @@ export function SignIn() {
       toast.error("Ocorreu um erro ao tentar acessar sua conta!");
     }
   }
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <>
       <Helmet title="Login" />
-      <div className="p-8">
+      <div className="p-8 ">
+        <Button variant="secondary" asChild className="absolute right-8 top-8">
+          <Link to="/sign-up">Crie uma conta</Link>
+        </Button>
         <div className="w-[450px] flex flex-col justify-center gap-6">
           <div className="flex flex-col gap-2 text-center">
             <h1 className="text-2xl font-semibold -tracking-tight">
