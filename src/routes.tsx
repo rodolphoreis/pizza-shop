@@ -6,11 +6,13 @@ import { AuthLayout } from "./pages/_layouts/auth.tsx";
 import { SignUp } from "./pages/auth/sign-up.tsx";
 import Orders from "./pages/app/orders/orders.tsx";
 import { Dashboard } from "./pages/app/dashboard/dashboard.tsx";
+import NotFound from "./pages/404.tsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
