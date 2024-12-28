@@ -12,7 +12,7 @@ export interface PaginationProps {
   perPage: number;
 }
 const Pagination = ({ pageIndex, totalCount, perPage }: PaginationProps) => {
-  const pages = Math.ceil(totalCount / perPage);
+  const pages = Math.ceil(totalCount / perPage) || 1;
 
   return (
     <div className="flex items-center justify-between">
