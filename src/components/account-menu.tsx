@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu.tsx";
 import { Button } from "./ui/button.tsx";
-import { Building, ChevronDown, Divide, LogOut } from "lucide-react";
+import { Building, ChevronDown, LogOut } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProfileUser } from "@/api/get-profile-user.ts";
 import { getManagedRestaurant } from "@/api/get-managed-restaurant.ts";
