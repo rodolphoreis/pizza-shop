@@ -43,7 +43,7 @@ const AccountMenu = () => {
           ) : (
             <>
               <span>{profile?.name}</span>
-              <span className="text-sm forn-normal text-muted">
+              <span className="text-sm forn-normal text-zinc-400 dark:text-zinc-600">
                 {profile?.email}
               </span>
             </>
