@@ -16,7 +16,7 @@ import { getOrders } from "@/api/get-orders.ts";
 const Orders = () => {
   const { data: result } = useQuery({
     queryKey: ["orders"],
-    queryFn: getOrders,
+    queryFn: () => getOrders({ pageIndex: 0 }),
   });
   return (
     <>
