@@ -16,7 +16,7 @@ const Header = () => {
             <Home className="h-4 w-4" />
             <span className="hidden sm:block">Inicio</span>
           </NavLink>
-          <NavLink to="/orders">
+          <NavLink to="/orders?page=1">
             <UtensilsCrossed className="h-4 w-4" />
             <span className="hidden sm:block">Pedidos</span>
           </NavLink>
