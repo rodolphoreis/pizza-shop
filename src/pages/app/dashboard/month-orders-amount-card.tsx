@@ -41,7 +41,7 @@ const MonthOrdersAmountCard = () => {
                 ) : (
                   <>
                     <span className="text-rose-500 dark:text-rose-400">
-                      -{monthOrdersAmountFn.diffFromLastMonth}%
+                      {monthOrdersAmountFn.diffFromLastMonth}%
                     </span>{" "}
                     em relação ao mês passado
                   </>
