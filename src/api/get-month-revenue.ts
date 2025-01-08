@@ -1,7 +1,7 @@
 import { api } from "@/lib/axios.ts";
 
 export interface GetMonthRevenueResponse {
-  amount: number;
+  receipt: number;
   diffFromLastMonth: number;
 }
 
