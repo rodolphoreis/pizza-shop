@@ -40,7 +40,7 @@ const DayOrdersAmountCard = () => {
                 ) : (
                   <>
                     <span className="text-rose-500 dark:text-rose-400">
-                      -{dayOrdersAmountFn.diffFromYesterday}%
+                      {dayOrdersAmountFn.diffFromYesterday}%
                     </span>{" "}
                     em relação a ontem
                   </>
