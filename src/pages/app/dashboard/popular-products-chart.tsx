@@ -20,37 +20,6 @@ const COLORS = [
   "#00bcd4",
 ];
 
-const data = [
-  {
-    product: "Pepperoni",
-    amount: 234,
-  },
-  {
-    product: "Portuguesa",
-    amount: 123,
-  },
-  {
-    product: "Frango",
-    amount: 156,
-  },
-  {
-    product: "Marguerita",
-    amount: 90,
-  },
-  {
-    product: "Quatro Queijos",
-    amount: 153,
-  },
-  {
-    product: "Calabresa",
-    amount: 180,
-  },
-  {
-    product: "Bacon",
-    amount: 30,
-  },
-];
-
 const PopularProductsChart = () => {
   const { data: popularProductsfn } = useQuery({
     queryKey: ["metrics", "popular-products"],

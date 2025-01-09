@@ -1,3 +1,4 @@
+import { getDailyRevenueInPeriod } from "@/api/get-daily-revenue-in-period.ts";
 import {
   Card,
   CardContent,
@@ -5,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   ResponsiveContainer,
@@ -16,38 +18,11 @@ import {
   CartesianGrid,
 } from "recharts";
 
-const data = [
-  {
-    date: "10/12",
-    revenue: 1234,
-  },
-  {
-    date: "11/12",
-    revenue: 1567,
-  },
-  {
-    date: "12/12",
-    revenue: 90,
-  },
-  {
-    date: "13/12",
-    revenue: 2210,
-  },
-  {
-    date: "14/12",
-    revenue: 1530,
-  },
-  {
-    date: "15/12",
-    revenue: 1800,
-  },
-  {
-    date: "16/12",
-    revenue: 730,
-  },
-];
-
 const RevenueChart = () => {
+  const { data: dailyRevenueInPeriodfn } = useQuery({
+    queryKey: ["metrics", "daily-revenue-in-period"],
+    queryFn: getDailyRevenueInPeriod,
+  });
   return (
     <>
       <Card className="col-span-6">
