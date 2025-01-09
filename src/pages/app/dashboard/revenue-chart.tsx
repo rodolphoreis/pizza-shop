@@ -35,34 +35,41 @@ const RevenueChart = () => {
           </div>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={240}>
-            <LineChart data={data} style={{ fontSize: 12 }}>
-              <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
-              <YAxis
-                stroke="#888"
-                axisLine={false}
-                tickLine={false}
-                width={80}
-                tickFormatter={(value: number) =>
-                  value.toLocaleString("pt-PT", {
-                    style: "currency",
-                    currency: "EUR",
-                  })
-                }
-                dx={-16}
-              />
+          {dailyRevenueInPeriodfn && (
+            <ResponsiveContainer width="100%" height={240}>
+              <LineChart data={dailyRevenueInPeriodfn} style={{ fontSize: 12 }}>
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  dy={16}
+                />
+                <YAxis
+                  stroke="#888"
+                  axisLine={false}
+                  tickLine={false}
+                  width={80}
+                  tickFormatter={(value: number) =>
+                    value.toLocaleString("pt-PT", {
+                      style: "currency",
+                      currency: "EUR",
+                    })
+                  }
+                  dx={-16}
+                />
 
-              <Tooltip />
-              <CartesianGrid vertical={false} className="stroke-muted" />
+                <Tooltip />
+                <CartesianGrid vertical={false} className="stroke-muted" />
 
-              <Line
-                type="linear"
-                strokeWidth={2}
-                dataKey="revenue"
-                stroke="#3249de"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+                <Line
+                  type="linear"
+                  strokeWidth={2}
+                  dataKey="receipt"
+                  stroke="#3249de"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
         </CardContent>
       </Card>
     </>
