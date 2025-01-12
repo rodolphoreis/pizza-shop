@@ -1,4 +1,7 @@
-import { getDailyRevenueInPeriod } from "@/api/get-daily-revenue-in-period.ts";
+import {
+  getDailyRevenueInPeriod,
+  GetDailyRevenueInPeriodResponse,
+} from "@/api/get-daily-revenue-in-period.ts";
 import {
   Card,
   CardContent,
@@ -6,7 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
-import { useQuery } from "@tanstack/react-query";
+import { DatePickerWithRange } from "@/components/ui/date-range-picker.tsx";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { useState } from "react";
+import { DateRange } from "react-day-picker";
 
 import {
   ResponsiveContainer,
@@ -17,12 +23,33 @@ import {
   Line,
   CartesianGrid,
 } from "recharts";
+import { subDays } from "date-fns";
 
 const RevenueChart = () => {
-  const { data: dailyRevenueInPeriodfn } = useQuery({
-    queryKey: ["metrics", "daily-revenue-in-period"],
-    queryFn: getDailyRevenueInPeriod,
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: subDays(new Date(), 7),
+    to: new Date(),
   });
+
+  const { data: dailyRevenueInPeriodfn } =
+    useQuery<GetDailyRevenueInPeriodResponse>({
+      queryKey: ["metrics", "daily-revenue-in-period", dateRange],
+      queryFn: () =>
+        getDailyRevenueInPeriod({
+          from: dateRange?.from,
+          to: dateRange?.to,
+        }),
+      onSuccess: (data: GetDailyRevenueInPeriodResponse) => {
+        console.log("Dados recebidos:", data);
+      },
+      onError: (error: any) => {
+        console.error(
+          "Erro na requisição:",
+          error.response || error.message || error
+        );
+      },
+    } as UseQueryOptions<GetDailyRevenueInPeriodResponse, Error>);
+
   return (
     <>
       <Card className="col-span-6">
@@ -32,6 +59,10 @@ const RevenueChart = () => {
               Receita no período
             </CardTitle>
             <CardDescription>Receita diária no período</CardDescription>
+          </div>
+          <div className="flex items-center gap-3 ">
+            <label>Período</label>
+            <DatePickerWithRange date={dateRange} onDateChange={setDateRange} />
           </div>
         </CardHeader>
         <CardContent>
