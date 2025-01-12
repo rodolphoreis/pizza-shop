@@ -30,4 +30,13 @@ describe("order-status", () => {
     expect(statusText).toBeInTheDocument();
     expect(badgeElement).toHaveClass("bg-blue-500");
   });
+  it("should display the right text when order status is processing", () => {
+    const wrapper = render(<OrderStatus status="processing" />);
+
+    const statusText = wrapper.getByText("Processando");
+    const badgeElement = wrapper.getByTestId("badge");
+
+    expect(statusText).toBeInTheDocument();
+    expect(badgeElement).toHaveClass("bg-yellow-500");
+  });
 });
