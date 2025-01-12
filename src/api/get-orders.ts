@@ -23,18 +23,18 @@ export interface GetOrdersResponse {
 }
 
 export async function getOrders({
-  pageIndex,
-  orderId,
-  customerName,
-  status,
+  pageIndex = 1,
+  orderId = null,
+  customerName = null,
+  status = null,
 }: GetOrdersQuery): Promise<GetOrdersResponse> {
-  const response = await api.get<GetOrdersResponse>("/orders", {
-    params: {
-      pageIndex,
-      orderId,
-      customerName,
-      status,
-    },
-  });
-  return response.data;
+  try {
+    const response = await api.get<GetOrdersResponse>("/orders", {
+      params: { pageIndex, orderId, customerName, status },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    throw error;
+  }
 }
