@@ -92,7 +92,9 @@ const OrderDetails = ({ orderId, open }: OrderDetailsProps) => {
                 <TableCell className="flex justify-end">
                   <div className="flex items-center gap-2 ">
                     <span className="font-medium text-muted-foreground">
-                      {formatDistanceToNow(order.createdAt, { locale: ptBR })}
+                      {formatDistanceToNow(new Date(order.createdAt), {
+                        locale: ptBR,
+                      })}
                     </span>
                   </div>
                 </TableCell>
