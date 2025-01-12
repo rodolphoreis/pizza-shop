@@ -91,7 +91,7 @@ const OrderTableRow = ({ order }: OrderTableRowProps) => {
         <TableCell>
           <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" size="xs">
+              <Button variant="outline">
                 <Search className="w-3 h-3" />
                 <span className="sr-only">Detalhes do pedido</span>
               </Button>
@@ -103,10 +103,22 @@ const OrderTableRow = ({ order }: OrderTableRowProps) => {
           {order.orderId}
         </TableCell>
         <TableCell>
-          {formatDistanceToNow(order.createdAt, {
-            locale: ptBR,
-            addSuffix: true,
-          })}
+          {(() => {
+            const createdAt = new Date(order.createdAt);
+            if (isNaN(createdAt.getTime())) {
+              console.error("Data inválida:", order.createdAt);
+              return <span>Erro na data</span>;
+            }
+
+            const formattedDate = formatDistanceToNow(createdAt, {
+              locale: ptBR,
+            });
+            return (
+              <span className="font-medium text-muted-foreground">
+                {formattedDate}
+              </span>
+            );
+          })()}
         </TableCell>
         <TableCell>
           <OrderStatus status={order.status} />
@@ -124,7 +136,6 @@ const OrderTableRow = ({ order }: OrderTableRowProps) => {
               onClick={() => approveOrderFn({ orderId: order.orderId })}
               disabled={isApprovingOrder}
               variant="outline"
-              size="xs"
             >
               <ArrowRight className="mr-2 w-3 h-3" />
               Aprovar
@@ -136,7 +147,6 @@ const OrderTableRow = ({ order }: OrderTableRowProps) => {
               onClick={() => dispatchOrderFn({ orderId: order.orderId })}
               disabled={isDispatchingOrder}
               variant="outline"
-              size="xs"
             >
               <ArrowRight className="mr-2 w-3 h-3" />
               Em entrega
@@ -148,7 +158,6 @@ const OrderTableRow = ({ order }: OrderTableRowProps) => {
               onClick={() => deliverOrderFn({ orderId: order.orderId })}
               disabled={isDeliveringOrder}
               variant="outline"
-              size="xs"
             >
               <ArrowRight className="mr-2 w-3 h-3" />
               Entregue
@@ -163,7 +172,6 @@ const OrderTableRow = ({ order }: OrderTableRowProps) => {
             }
             onClick={() => cancelOrderFn({ orderId: order.orderId })}
             variant="ghost"
-            size="xs"
           >
             <X className="mr-2 w-3 h-3" />
             Cancelar
