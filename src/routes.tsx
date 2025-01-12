@@ -7,12 +7,13 @@ import { SignUp } from "./pages/auth/sign-up.tsx";
 import Orders from "./pages/app/orders/orders.tsx";
 import { Dashboard } from "./pages/app/dashboard/dashboard.tsx";
 import NotFound from "./pages/404.tsx";
+import Error from "./pages/error.tsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    errorElement: <NotFound />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -37,5 +38,9 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
