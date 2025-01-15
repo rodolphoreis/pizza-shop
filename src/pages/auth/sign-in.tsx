@@ -1,5 +1,5 @@
-import { signIn } from "@/api/sign-in.ts";
-import { Button } from "@/components/ui/button.tsx";
+import { signIn } from "@/api/sign-in";
+import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
