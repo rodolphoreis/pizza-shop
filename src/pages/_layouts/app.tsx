@@ -1,5 +1,6 @@
-import Header from "@/components/header.tsx";
-import { api } from "@/lib/axios.ts";
+import Header from "@/components/header";
+import { api } from "@/lib/axios";
+
 import { isAxiosError } from "axios";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -16,6 +17,8 @@ export function AppLayout() {
 
           if (status === 401 && code === "UNAUTHORIZED") {
             navigate("/sign-in", { replace: true });
+          } else {
+            throw error;
           }
         }
       }
