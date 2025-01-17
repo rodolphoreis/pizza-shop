@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios.ts";
+import { api } from "@/lib/axios";
 
 export interface GetManagedRestaurantResponse {
   id: string;
