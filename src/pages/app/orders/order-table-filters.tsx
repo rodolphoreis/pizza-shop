@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button.tsx";
-import { Input } from "@/components/ui/input.tsx";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select.tsx";
+} from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Search, X } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
@@ -121,16 +121,11 @@ const OrderTableFilters = () => {
             );
           }}
         />
-        <Button type="submit" variant="secondary" size={"xs"}>
+        <Button type="submit" variant="secondary">
           <Search className="w-4 h-4 mr-2" />
           Filtrar resultados
         </Button>
-        <Button
-          onClick={handleClearFilters}
-          type="button"
-          variant="outline"
-          size={"xs"}
-        >
+        <Button onClick={handleClearFilters} type="button" variant="outline">
           <X className="w-4 h-4 mr-2" />
           Remover filtros
         </Button>
