@@ -1,6 +1,6 @@
-import { api } from "@/lib/axios.ts";
+import { api } from "@/lib/axios";
 
-interface UpdateProfileProps {
+export interface UpdateProfileProps {
   name: string;
   description: string | null;
 }
