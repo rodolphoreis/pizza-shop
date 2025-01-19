@@ -83,6 +83,16 @@ Para iniciar o frontend, navegue até o diretório `client` e execute os seguint
    npm start
    ```
 
+## Imagens
+
+### Dashboard
+
+![Dashboard](./public/dashboard.png)
+
+### Pedidos
+
+![Pedidos](./public/pedidos.png)
+
 ## Contribuição
 
 Sinta-se à vontade para contribuir com o projeto. Para isso, siga os passos abaixo:
