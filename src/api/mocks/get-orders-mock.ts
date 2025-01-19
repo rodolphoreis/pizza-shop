@@ -1,51 +1,71 @@
 import { http, HttpResponse } from "msw";
-import { GetOrdersResponse } from "../get-orders";
+import type { GetOrdersResponse } from "../get-orders";
+
+type Orders = GetOrdersResponse["orders"];
+type OrderStatus = GetOrdersResponse["orders"][number]["status"];
+
+const statuses: OrderStatus[] = [
+  "pending",
+  "canceled",
+  "processing",
+  "delivering",
+  "delivered",
+];
+
+const order: Orders = Array.from({ length: 60 }).map((_, i) => {
+  return {
+    orderId: `order-${i + 1}`,
+    createdAt: new Date(),
+    status: statuses[i % 5],
+    customerName: `Customer ${i + 1}`,
+    total: Math.floor(Math.random() * 1000) + 100,
+  };
+});
 
 export const getOrdersMock = http.get<never, never, GetOrdersResponse>(
   "/orders",
-  () => {
+  async ({ request }) => {
+    const { searchParams } = new URL(request.url);
+
+    const pageIndex = searchParams.get("pageIndex")
+      ? Number(searchParams.get("pageIndex"))
+      : 0;
+
+    const orderId = searchParams.get("orderId");
+    const customerName = searchParams.get("customerName");
+    const status = searchParams.get("status");
+
+    let filteredOrders = order;
+
+    if (customerName) {
+      filteredOrders = filteredOrders.filter((order) =>
+        order.customerName.includes(customerName)
+      );
+    }
+
+    if (orderId) {
+      filteredOrders = filteredOrders.filter((order) =>
+        order.orderId.includes(orderId)
+      );
+    }
+
+    if (status) {
+      filteredOrders = filteredOrders.filter(
+        (order) => order.status === status
+      );
+    }
+
+    const paginateOrders = filteredOrders.slice(
+      pageIndex * 10,
+      (pageIndex + 1) * 10
+    );
+
     return HttpResponse.json({
-      orders: [
-        {
-          orderId: "1sbfg54h6tbgr",
-          createdAt: new Date("2025-01-17T10:30:00Z"),
-          status: "pending",
-          customerName: "João Silva",
-          total: 4215,
-        },
-        {
-          orderId: "2dbae45yghtreb",
-          createdAt: new Date("2025-01-17T11:00:00Z"),
-          status: "processing",
-          customerName: "Maria Oliveira",
-          total: 3750,
-        },
-        {
-          orderId: "3gweg45y4ghgte",
-          createdAt: new Date("2025-01-17T11:45:00Z"),
-          status: "delivering",
-          customerName: "Carlos Souza",
-          total: 5025,
-        },
-        {
-          orderId: "44erhgedhergh3",
-          createdAt: new Date("2025-01-17T12:15:00Z"),
-          status: "delivering",
-          customerName: "Ana Paula",
-          total: 2223,
-        },
-        {
-          orderId: "5rhbednhe55hgf",
-          createdAt: new Date("2025-01-17T13:30:00Z"),
-          status: "delivered",
-          customerName: "Lucas Pereira",
-          total: 1070,
-        },
-      ],
+      orders: paginateOrders,
       meta: {
-        pageIndex: 1,
-        perPage: 5,
-        totalCount: 5,
+        pageIndex,
+        perPage: 10,
+        totalCount: filteredOrders.length,
       },
     });
   }
