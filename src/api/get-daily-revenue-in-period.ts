@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios.ts";
+import { api } from "@/lib/axios";
 import { format } from "date-fns";
 
 export interface GetDailyRevenueInPeriodQuery {
