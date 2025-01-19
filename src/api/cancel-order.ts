@@ -1,6 +1,6 @@
-import { api } from "@/lib/axios.ts";
+import { api } from "@/lib/axios";
 
-interface CancelOrdersParams {
+export interface CancelOrdersParams {
   orderId: string;
 }
 
