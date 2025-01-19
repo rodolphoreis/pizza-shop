@@ -1,5 +1,5 @@
-import { registerRestaurant } from "@/api/register-restaurant.ts";
-import { Button } from "@/components/ui/button.tsx";
+import { registerRestaurant } from "@/api/register-restaurant";
+import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
