@@ -1,6 +1,6 @@
-import { api } from "@/lib/axios.ts";
+import { api } from "@/lib/axios";
 
-interface DispatchOrdersParams {
+export interface DispatchOrdersParams {
   orderId: string;
 }
 
