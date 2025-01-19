@@ -5,9 +5,9 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
 
-import { cn } from "@/lib/utils.ts";
-import { Button } from "./button.tsx";
-import { Calendar } from "./calendar.tsx";
+import { cn } from "@/lib/utils";
+import { Button } from "./button";
+import { Calendar } from "./calendar";
 import {
   Popover,
   PopoverTrigger,

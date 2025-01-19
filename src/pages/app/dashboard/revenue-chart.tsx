@@ -1,15 +1,15 @@
 import {
   getDailyRevenueInPeriod,
   GetDailyRevenueInPeriodResponse,
-} from "@/api/get-daily-revenue-in-period.ts";
+} from "@/api/get-daily-revenue-in-period";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card.tsx";
-import { DatePickerWithRange } from "@/components/ui/date-range-picker.tsx";
+} from "@/components/ui/card";
+import { DatePickerWithRange } from "@/components/ui/date-range-picker";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { useState } from "react";
 import { DateRange } from "react-day-picker";
