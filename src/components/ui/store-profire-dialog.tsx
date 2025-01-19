@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "./button.tsx";
+import { Button } from "./button";
 import {
   DialogClose,
   DialogContent,
@@ -7,17 +7,17 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "./dialog.tsx";
-import { Input } from "./input.tsx";
-import { Label } from "./label.tsx";
-import { Textarea } from "./textarea.tsx";
+} from "./dialog";
+import { Input } from "./input";
+import { Label } from "./label";
+import { Textarea } from "./textarea";
 
 import * as z from "zod";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getManagedRestaurant } from "@/api/get-managed-restaurant.ts";
+import { getManagedRestaurant } from "@/api/get-managed-restaurant";
 import { useForm } from "react-hook-form";
-import { updateProfile } from "@/api/update-profile.ts";
+import { updateProfile } from "@/api/update-profile";
 import { toast } from "sonner";
 
 const StoreProfileSchema = z.object({
@@ -129,7 +129,7 @@ const StoreProfireDialog = () => {
               Cancelar
             </Button>
           </DialogClose>
-          <Button variant="success" type="submit" disabled={isSubmitting}>
+          <Button variant="default" type="submit" disabled={isSubmitting}>
             Salvar
           </Button>
         </DialogFooter>
