@@ -21,7 +21,7 @@ test("sign in with wrong credentials", async ({ page }) => {
   await page.getByRole("button", { name: "Acessar painel" }).click();
 
   const toast = page.getByText("Ocorreu um erro ao tentar acessar sua conta!");
-  expect(toast).toBeVisible();
+  await expect(toast).toBeVisible();
 });
 
 test("navigate to new restaurant page", async ({ page }) => {

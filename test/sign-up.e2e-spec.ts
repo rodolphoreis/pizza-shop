@@ -22,7 +22,7 @@ test("enter data to create new restaurant", async ({ page }) => {
   page.getByRole("button", { name: "Finalizar cadastro" }).click();
 
   const toast = page.getByText("Restaurante cadastrado com sucesso!");
-  expect(toast).toBeVisible();
+  await expect(toast).toBeVisible();
 });
 
 test("sign up with error", async ({ page }) => {
@@ -36,5 +36,5 @@ test("sign up with error", async ({ page }) => {
   page.getByRole("button", { name: "Finalizar cadastro" }).click();
 
   const toast = page.getByText("Ocorreu um erro ao cadastrar sua conta!");
-  expect(toast).toBeVisible();
+  await expect(toast).toBeVisible();
 });
