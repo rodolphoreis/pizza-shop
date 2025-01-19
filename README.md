@@ -85,6 +85,14 @@ Para iniciar o frontend, navegue até o diretório `client` e execute os seguint
 
 ## Imagens
 
+### Sign In
+
+![Sign In](./public/sign-in.png)
+
+### Sign Up
+
+![Sign Up](./public/sign-up.png)
+
 ### Dashboard
 
 ![Dashboard](./public/dashboard.png)
